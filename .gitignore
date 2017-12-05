@@ -1,0 +1,23 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directory
+# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Mac temp files
+.DS_Store
+
+# Transpiled files
+dist
+
+# Environment variables
+.env
+
+# Database
+data.csv

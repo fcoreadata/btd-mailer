@@ -1,0 +1,113 @@
+html
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Hot Company Summary
+  body(style='color: #212121;font-family: helvetica neue,helvetica,arial,sans-serif;font-size: 12.8px;line-height: 150%;text-align: left;')
+    .container(style='padding-right: 18px;padding-left: 18px;')
+      section#pre-partner-meeting-companies
+        h2.title Pre-partner meeting
+        .companies
+          each company, index in prePartnerMeetingCompanies
+            .company(style='padding-top: 9px;padding-bottom: 9px;')
+              p.company-description
+                | #{index + 1}. 
+                strong #{company.name} 
+                if company.description
+                  | is a !{company.description}
+                if company.cities
+                  | , based in !{company.cities}
+                if (company.description || company.cities)
+                  | . 
+                if company.traction
+                  | They have !{company.traction}. 
+                if company.teamDescription
+                  | The team are !{company.teamDescription}
+                  if company.rank
+                    | , 
+                  else 
+                    | . 
+                if company.rank
+                  if company.teamDescription
+                    | w
+                  else
+                    | W
+                  | e rank them #{company.rank}/5. 
+                if company.raiseAmount
+                  | They are raising !{company.raiseAmount}. 
+                if company.nextSteps
+                  | Suggested next steps are !{company.nextSteps}. 
+              .company-files
+                p Files in Streak box:
+                ul
+                  each file in company.files
+                    li #{file}
+              .company-assignees
+                span [ 
+                  if company.assignees.length == 0
+                    | Not assigned
+                  each assignee, index in company.assignees
+                    if index > 0
+                      | , 
+                    span
+                      a(href="mailto:#{assignee.email}")= assignee.displayName
+                  |  ]
+      section#hot-companies
+        h2.title Hot companies
+        if diff.valid
+          .diff
+            h3 Since last summary
+            h4 Removed
+            ul
+              each companyName in diff.deletions
+                li #{companyName}
+            h4 Added
+            ul
+              each companyName in diff.additions
+                li #{companyName}
+        .companies
+          each company, index in hotCompanies
+            .company(style='padding-top: 9px;padding-bottom: 9px;')
+              p.company-description
+                | #{index + 1}. 
+                strong #{company.name} 
+                if company.description
+                  | is a !{company.description}
+                if company.cities
+                  | , based in !{company.cities}
+                if (company.description || company.cities)
+                  | . 
+                if company.traction
+                  | They have !{company.traction}. 
+                if company.teamDescription
+                  | The team are !{company.teamDescription}
+                  if company.rank
+                    | , 
+                  else 
+                    | . 
+                if company.rank
+                  if company.teamDescription
+                    | w
+                  else
+                    | W
+                  | e rank them #{company.rank}/5. 
+                if company.raiseAmount
+                  | They are raising !{company.raiseAmount}. 
+                if company.nextSteps
+                  | Suggested next steps are !{company.nextSteps}. 
+              .company-files
+                p Files in Streak box:
+                ul
+                  each file in company.files
+                    li #{file}
+              .company-assignees
+                span [ 
+                  if company.assignees.length == 0
+                    | Not assigned
+                  each assignee, index in company.assignees
+                    if index > 0
+                      | , 
+                    span
+                      a(href="mailto:#{assignee.email}")= assignee.displayName
+                  |  ]
